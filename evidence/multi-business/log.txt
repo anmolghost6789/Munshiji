@@ -1,0 +1,12 @@
+Multi-business run-through: production build, restricted app role, fresh database.
+1 Ramesh signed up: [('Telix Traders', 'owner')]
+2 invite link created: http://localhost:3123/invite/…
+3 invite page says: Join Telix Traders
+4 Vikram joined: [('Telix Traders', 'staff')]
+5 reusing the link -> This invite link is not valid any more. Ask for a new one.
+6 Bilal sees customers: ['Beta Buyer Co']
+7 invite for an existing account shows password only: True
+8 Ramesh now in: [('Telix Traders', 'owner'), ('Beta Boxes', 'manager')] | current: Beta Boxes manager
+  customers visible in Beta: ['Beta Buyer Co']
+9 switched to: Telix Traders owner | customers: ['Hindustan Foods Pvt Ltd']
+page errors: []

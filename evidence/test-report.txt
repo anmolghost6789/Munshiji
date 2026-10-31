@@ -1,0 +1,341 @@
+
+ RUN  v3.2.4 /home/claude/munshiji-app
+
+stdout | tests/security.test.ts > sign-up and sign-in > sign-up creates a person, their own business and an owner membership — no setup code
+[munshiji] email not sent (RESEND_API_KEY not set): verify_email to asha@example.in
+Confirm your email
+
+Namaste Asha Mehta, welcome to Munshiji.
+
+Confirm this is your email so you can always get back into your account.
+
+Confirm email: http://localhost:3000/verify/5AshWyfs_0JfPs7XuM2_jqERobD2vGo0zkvf4Msjjms
+
+The link expires in 3 days.
+
+ ✓ tests/security.test.ts > sign-up and sign-in > sign-up creates a person, their own business and an owner membership — no setup code 816ms
+stdout | tests/security.test.ts > sign-up and sign-in > limits sign-ups per network
+[munshiji] email not sent (RESEND_API_KEY not set): verify_email to bulk0@spam.in
+Confirm your email
+
+Namaste Bulk User, welcome to Munshiji.
+
+Confirm this is your email so you can always get back into your account.
+
+Confirm email: http://localhost:3000/verify/rwmZs8BMKA1u2KKL4dfsD7N85PRRUAKgRKIIVtVTdRk
+
+The link expires in 3 days.
+
+stdout | tests/security.test.ts > sign-up and sign-in > limits sign-ups per network
+[munshiji] email not sent (RESEND_API_KEY not set): verify_email to bulk1@spam.in
+Confirm your email
+
+Namaste Bulk User, welcome to Munshiji.
+
+Confirm this is your email so you can always get back into your account.
+
+Confirm email: http://localhost:3000/verify/Uga_V0OZyTzbllWqi0o3NZ4Q6Ijkrs9gtUO_1VNvRyg
+
+The link expires in 3 days.
+
+stdout | tests/security.test.ts > sign-up and sign-in > limits sign-ups per network
+[munshiji] email not sent (RESEND_API_KEY not set): verify_email to bulk2@spam.in
+Confirm your email
+
+Namaste Bulk User, welcome to Munshiji.
+
+Confirm this is your email so you can always get back into your account.
+
+Confirm email: http://localhost:3000/verify/xUhGueXIg2ossWvO7awW4wdBmfmTuZwkXaZ2u5MSWxI
+
+The link expires in 3 days.
+
+stdout | tests/security.test.ts > sign-up and sign-in > limits sign-ups per network
+[munshiji] email not sent (RESEND_API_KEY not set): verify_email to bulk3@spam.in
+Confirm your email
+
+Namaste Bulk User, welcome to Munshiji.
+
+Confirm this is your email so you can always get back into your account.
+
+Confirm email: http://localhost:3000/verify/Ogz9rl4TVARMF7rXwM2K0_h4Idb9ZZ2fXFwyCY4j5Wo
+
+The link expires in 3 days.
+
+stdout | tests/security.test.ts > sign-up and sign-in > limits sign-ups per network
+[munshiji] email not sent (RESEND_API_KEY not set): verify_email to bulk4@spam.in
+Confirm your email
+
+Namaste Bulk User, welcome to Munshiji.
+
+Confirm this is your email so you can always get back into your account.
+
+Confirm email: http://localhost:3000/verify/mnGDNgIEB83-IAM1AOwKsEvMKe3SZfnU9y8gwFZg-lw
+
+The link expires in 3 days.
+
+ ✓ tests/security.test.ts > sign-up and sign-in > limits sign-ups per network 1773ms
+ ✓ tests/security.test.ts > sign-up and sign-in > gives one generic message for a wrong email or password, and locks after 5 failures 1967ms
+ ✓ tests/security.test.ts > roles are enforced on the server > has the intended permission matrix 2ms
+ ✓ tests/security.test.ts > roles are enforced on the server > rejects requests with no session, and staff calling owner/manager APIs 37ms
+ ✓ tests/security.test.ts > roles are enforced on the server > hides money figures from staff on the overview 103ms
+ ✓ tests/security.test.ts > roles are enforced on the server > removing someone from the business locks them out at once 50ms
+ ✓ tests/security.test.ts > roles are enforced on the server > every business keeps an active owner, and owners can't change themselves 29ms
+ ✓ tests/security.test.ts > roles are enforced on the server > never leaks internals in error responses 16ms
+stdout | tests/privacy.test.ts
+[munshiji] email not sent (RESEND_API_KEY not set): verify_email to anita@p.in
+Confirm your email
+
+Namaste Anita, welcome to Munshiji.
+
+Confirm this is your email so you can always get back into your account.
+
+Confirm email: http://localhost:3000/verify/lKtz3Evklb3ZDrPzY9zODIBp0mOTTeD8Lr273-kNvMI
+
+The link expires in 3 days.
+
+stdout | tests/privacy.test.ts
+[munshiji] email not sent (RESEND_API_KEY not set): verify_email to balu@p.in
+Confirm your email
+
+Namaste Balu, welcome to Munshiji.
+
+Confirm this is your email so you can always get back into your account.
+
+Confirm email: http://localhost:3000/verify/fo6E4SI_OHPPsD83OvsNQ19puuce0oaVUgH2gSthE7Y
+
+The link expires in 3 days.
+
+stdout | tests/privacy.test.ts > consent > sign-up needs the terms accepted, and records which version and when
+[munshiji] email not sent (RESEND_API_KEY not set): invite to new@p.in
+Join Anita Foods on Munshiji
+
+Anita has invited you to join as staff.
+
+Munshiji keeps orders, GST bills, stock and payments in one place.
+
+Join the team: http://localhost:3000/invite/iQlLQf6H7rLZctdJoi7hzDeowQpdanA85zljYR6CpCc
+
+The link works once and expires in 7 days.
+
+ ✓ tests/privacy.test.ts > consent > sign-up needs the terms accepted, and records which version and when 21ms
+ ✓ tests/privacy.test.ts > downloads > a business export holds that business's data and nobody else's 86ms
+ ✓ tests/privacy.test.ts > downloads > a personal export holds the person's details and never their password 8ms
+stdout | tests/privacy.test.ts > deleting an account > needs the password and DELETE, and won't leave a team without an owner
+[munshiji] email not sent (RESEND_API_KEY not set): invite to ravi@p.in
+Join Anita Foods on Munshiji
+
+Anita has invited you to join as staff.
+
+Munshiji keeps orders, GST bills, stock and payments in one place.
+
+Join the team: http://localhost:3000/invite/9UKtYuSoLiynBv9qUxVeAkxp2RsOtHfC3fJ2NgEHUPo
+
+The link works once and expires in 7 days.
+
+ ✓ tests/privacy.test.ts > deleting an account > needs the password and DELETE, and won't leave a team without an owner 2127ms
+ ✓ tests/privacy.test.ts > deleting an account > a one-person business is closed when its owner leaves; its records stay for the GST retention period 339ms
+ ✓ tests/accounts.test.ts > email with Resend > sign-up sends a confirmation email; the link confirms once 377ms
+ ✓ tests/accounts.test.ts > email with Resend > forgot password gives the same answer for unknown emails and sends nothing 5ms
+ ✓ tests/accounts.test.ts > email with Resend > reset links are hashed, single-use, expire, and sign out every old session 759ms
+ ✓ tests/accounts.test.ts > email with Resend > invites are emailed to the invited person with the join link 10ms
+ ✓ tests/accounts.test.ts > linking a WhatsApp number > only a LINK code sent from that very phone links it; then forwarded orders are accepted and acknowledged 791ms
+ ✓ tests/accounts.test.ts > linking a WhatsApp number > nobody can claim a number that's already linked to someone else 369ms
+stdout | tests/accounts.test.ts > when email isn't set up > nothing breaks: the attempt is logged as skipped
+[munshiji] email not sent (RESEND_API_KEY not set): reset_password to meera@iyer.in
+Reset your password
+
+Namaste Meera Iyer, someone asked to reset the password for this email.
+
+The link works once and expires in 1 hour.
+
+Choose a new password: https://app.munshiji.test/reset/-2liLDSxkDW-6QX5_cgQWXuxacSIJ609k3wLz8WX1QM
+
+If this wasn't you, ignore this email; your password stays the same.
+
+ ✓ tests/accounts.test.ts > when email isn't set up > nothing breaks: the attempt is logged as skipped 15ms
+stdout | tests/tenancy.test.ts
+[munshiji] email not sent (RESEND_API_KEY not set): verify_email to asha@alpha.in
+Confirm your email
+
+Namaste Asha, welcome to Munshiji.
+
+Confirm this is your email so you can always get back into your account.
+
+Confirm email: http://localhost:3000/verify/ZS-ZnnjDQqoHsOVSOTVSOdt1V-nsWdbP_i8aqxi62NM
+
+The link expires in 3 days.
+
+stdout | tests/tenancy.test.ts
+[munshiji] email not sent (RESEND_API_KEY not set): verify_email to bilal@beta.in
+Confirm your email
+
+Namaste Bilal, welcome to Munshiji.
+
+Confirm this is your email so you can always get back into your account.
+
+Confirm email: http://localhost:3000/verify/TjNPVE1mFzYIIidZu2gtDvfOPMEJ3bScCuH0Y8dHHIU
+
+The link expires in 3 days.
+
+ ✓ tests/tenancy.test.ts > each business sees only its own data > numbers orders and bills independently: both start at ORD-1001 and 0001 4ms
+ ✓ tests/tenancy.test.ts > each business sees only its own data > the same order ID through the API returns each business its own order 81ms
+ ✓ tests/tenancy.test.ts > each business sees only its own data > a duplicate-save key used by both businesses creates two separate orders 6ms
+stdout | tests/tenancy.test.ts > invitations > invite links are single-use, stored only as a hash, and tied to the invited email
+[munshiji] email not sent (RESEND_API_KEY not set): invite to chetan@alpha.in
+Join Alpha Plastics on Munshiji
+
+Asha has invited you to join as staff.
+
+Munshiji keeps orders, GST bills, stock and payments in one place.
+
+Join the team: http://localhost:3000/invite/Z5hu4NG3Yp_Sxc72heYH2SBTVUy8n4uJ32FMaQuM5p0
+
+The link works once and expires in 7 days.
+
+ ✓ tests/tenancy.test.ts > one business can't reach another's data > can't order another business's product or bill another business's customer 17ms
+ ✓ tests/tenancy.test.ts > one business can't reach another's data > database links refuse cross-business rows even if application code had a bug 5ms
+ ✓ tests/tenancy.test.ts > one business can't reach another's data > Row-Level Security hides and protects rows even from queries with no business filter 20ms
+ ✓ tests/tenancy.test.ts > one business can't reach another's data > a forged business cookie is ignored: you act only where you're a member 13ms
+ ✓ tests/tenancy.test.ts > one business can't reach another's data > an owner can't manage another business's team 13ms
+ ✓ tests/tenancy.test.ts > invitations > invite links are single-use, stored only as a hash, and tied to the invited email 460ms
+stdout | tests/tenancy.test.ts > invitations > expired and revoked links don't work
+[munshiji] email not sent (RESEND_API_KEY not set): invite to late@alpha.in
+Join Alpha Plastics on Munshiji
+
+Asha has invited you to join as staff.
+
+Munshiji keeps orders, GST bills, stock and payments in one place.
+
+Join the team: http://localhost:3000/invite/SHNXVzHAY-TW_cifjI3PEAmy5CD1NNZW5WmUvLxP944
+
+The link works once and expires in 7 days.
+
+stdout | tests/tenancy.test.ts > invitations > expired and revoked links don't work
+[munshiji] email not sent (RESEND_API_KEY not set): invite to gone@alpha.in
+Join Alpha Plastics on Munshiji
+
+Asha has invited you to join as staff.
+
+Munshiji keeps orders, GST bills, stock and payments in one place.
+
+Join the team: http://localhost:3000/invite/Osz5uPkC56bMwPPAYPKzjVU0_nfgTx0Gg65lFxO6Nvw
+
+The link works once and expires in 7 days.
+
+stdout | tests/tenancy.test.ts > invitations > one person can work in two businesses with a different role in each, and switch between them
+[munshiji] email not sent (RESEND_API_KEY not set): invite to asha@alpha.in
+Join Beta Boxes on Munshiji
+
+Bilal has invited you to join as staff.
+
+Munshiji keeps orders, GST bills, stock and payments in one place.
+
+Join the team: http://localhost:3000/invite/yUagEvrEgPfeftamlpdIRSxHj_swvUueJ_HshC-chck
+
+The link works once and expires in 7 days.
+
+ ✓ tests/tenancy.test.ts > invitations > expired and revoked links don't work 43ms
+ ✓ tests/tenancy.test.ts > invitations > one person can work in two businesses with a different role in each, and switch between them 810ms
+ ✓ tests/tenancy.test.ts > WhatsApp goes to the right business > a forwarded order lands in the sender's business only 142ms
+NOTICE:  drop cascades to 28 other objects
+DETAIL:  drop cascades to table schema_migrations
+drop cascades to table business_profile
+drop cascades to table users
+drop cascades to table customers
+drop cascades to table products
+drop cascades to table orders
+drop cascades to table order_items
+drop cascades to table invoices
+drop cascades to table counters
+drop cascades to table payments
+drop cascades to table suppliers
+drop cascades to table raw_materials
+drop cascades to table purchase_orders
+drop cascades to table purchase_items
+drop cascades to table purchase_receipts
+drop cascades to table purchase_receipt_items
+drop cascades to table inventory_ledger
+drop cascades to table bom
+drop cascades to table audit_log
+drop cascades to table inbound_messages
+drop cascades to table login_attempts
+drop cascades to table businesses
+drop cascades to table memberships
+drop cascades to table invites
+drop cascades to table user_tokens
+drop cascades to table outbound_messages
+drop cascades to table credit_notes
+drop cascades to table credit_note_items
+This replaces the database with /tmp/mj-bk-5sIwdX/munshiji-20261027-204857.dump.
+Stop the app first, then run again with --yes.
+ ✓ tests/backup.test.ts > backup and recovery (Postgres) > backs up while in use, survives losing the database, and continues bill numbering 1041ms
+Not a readable Munshiji backup.
+ ✓ tests/backup.test.ts > backup and recovery (Postgres) > refuses to restore a file that isn't a backup 80ms
+ ✓ tests/backup.test.ts > backup and recovery (Postgres) > the health check catches stock changed outside Munshiji 102ms
+ ✓ tests/concurrency.test.ts > simultaneous requests > two dispatches racing for 30 rolls: one wins, stock never goes negative 109ms
+ ✓ tests/concurrency.test.ts > simultaneous requests > ten simultaneous 'Make bill' clicks on one order make one bill 116ms
+ ✓ tests/concurrency.test.ts > simultaneous requests > twenty simultaneous saves with the same key create one order 350ms
+ ✓ tests/concurrency.test.ts > simultaneous requests > thirty orders billed at the same moment get consecutive, unique numbers 1138ms
+ ✓ tests/concurrency.test.ts > simultaneous requests > simultaneous payments can't together exceed the balance 56ms
+stdout | tests/pilot-simulation.test.ts > two-week pilot: 50 orders > processes 50 orders with real-world mess and keeps every number right
+PILOT SIMULATION {"orders":50,"billed":48,"paid":38,"partPaidOpen":0,"cancelled":2,"retriesAbsorbed":12,"doubleBillClicks":12,"dispatchBlocked":3,"edits":9,"cancels":2,"partPayments":6,"paymentRetries":5,"voided":1,"receipts":5,"duplicateReceiptBlocked":1}
+
+ ✓ tests/pilot-simulation.test.ts > two-week pilot: 50 orders > processes 50 orders with real-world mess and keeps every number right 2226ms
+ ✓ tests/gst-compliance.test.ts > credit notes > are allowed until 30 November after the bill's financial year 2ms
+ ✓ tests/gst-compliance.test.ts > credit notes > credit returned goods: never more than billed, tax split kept, stock back, own numbering, balance reduced 104ms
+ ✓ tests/gst-compliance.test.ts > credit notes > price reductions credit an amount, not a quantity; refunds are flagged when the bill was already paid 72ms
+ ✓ tests/gst-compliance.test.ts > credit notes > a full credit of an unpaid bill leaves the order 'Credited' with nothing due 138ms
+ ✓ tests/gst-compliance.test.ts > credit notes > inter-state bills get IGST credit notes 56ms
+ ✓ tests/gst-compliance.test.ts > credit notes > can't be issued after the deadline, or for unbilled orders 45ms
+ ✓ tests/gst-compliance.test.ts > credit notes > go into GSTR-1 (CDNR for registered buyers) and make HSN and GSTR-3B net 38ms
+ ✓ tests/gst-compliance.test.ts > e-invoicing > bills to registered buyers need an IRN when the business is above ₹5 crore; consumer bills don't 98ms
+ ✓ tests/gst-compliance.test.ts > e-way bills > block dispatch above ₹50,000 until the e-way bill number and vehicle are recorded 43ms
+ ✓ tests/gst-compliance.test.ts > e-way bills > allow a stated exemption, and don't apply below the threshold or for unregistered businesses 66ms
+ ✓ tests/money.test.ts > India time and financial years > uses IST for dates and April–March financial years 2ms
+ ✓ tests/money.test.ts > bill numbers > start from the configured number, are consecutive, unique and ≤ 16 characters 137ms
+ ✓ tests/money.test.ts > bill numbers > making the bill again returns the same bill 43ms
+ ✓ tests/money.test.ts > bill numbers > restart at 0001 in a new financial year 43ms
+ ✓ tests/money.test.ts > bill numbers > can't bill an order that isn't delivered 50ms
+ ✓ tests/money.test.ts > payments > tracks part payments, refuses overpayment, and marks paid only at zero balance 74ms
+ ✓ tests/money.test.ts > payments > rejects future-dated payments 35ms
+ ✓ tests/money.test.ts > payments > leaves no money inconsistencies 4ms
+ ✓ tests/place-of-supply.test.ts > place of supply > the rule: buyer GSTIN state, else delivery state, else seller state 1ms
+ ✓ tests/place-of-supply.test.ts > place of supply > a consumer delivered in another state is billed IGST; in the same state, CGST + SGST 98ms
+ ✓ tests/place-of-supply.test.ts > place of supply > a registered buyer's GSTIN state wins over any delivery state 40ms
+ ✓ tests/place-of-supply.test.ts > place of supply > GSTR-1 reports consumer sales by delivery state, and large out-of-state ones as B2CL 59ms
+ ✓ tests/place-of-supply.test.ts > place of supply > rejects a delivery state that isn't a real state code 2ms
+ ✓ tests/orders.test.ts > creating orders > uses catalog price, catalog GST and server-side totals 16ms
+ ✓ tests/orders.test.ts > creating orders > rejects products that aren't in the catalog 3ms
+ ✓ tests/orders.test.ts > creating orders > rejects zero, negative and absurd quantities 2ms
+ ✓ tests/orders.test.ts > creating orders > blocks staff from changing prices; managers can and it is audited 15ms
+ ✓ tests/orders.test.ts > creating orders > ignores GST and totals sent by the client 8ms
+ ✓ tests/orders.test.ts > creating orders > saving twice with the same key creates one order 19ms
+ ✓ tests/orders.test.ts > creating orders > warns about a likely duplicate saved minutes earlier with a different key 20ms
+ ✓ tests/orders.test.ts > creating orders > rejects an invalid buyer GSTIN and reuses buyers with the same phone 8ms
+ ✓ tests/orders.test.ts > editing, advancing and cancelling > edits until dispatch, with version protection 23ms
+ ✓ tests/orders.test.ts > editing, advancing and cancelling > moves one step at a time, deducts stock at dispatch, bills at invoicing, and locks edits 59ms
+ ✓ tests/orders.test.ts > editing, advancing and cancelling > cancelling after dispatch puts the stock back exactly once 34ms
+ ✓ tests/inventory.test.ts > purchase receipts > adds stock with a ledger line per item, merging repeated lines 19ms
+ ✓ tests/inventory.test.ts > purchase receipts > refuses the same supplier bill twice, and the same save twice 10ms
+ ✓ tests/inventory.test.ts > purchase receipts > rejects bad receipts without changing anything 5ms
+ ✓ tests/inventory.test.ts > dispatch deductions > blocks dispatch when stock is short, and names what's missing 40ms
+ ✓ tests/inventory.test.ts > dispatch deductions > deducts exactly once even if dispatch is applied twice 30ms
+ ✓ tests/inventory.test.ts > adjustments and the ledger invariant > adjusts to a counted quantity with a reason 4ms
+ ✓ tests/inventory.test.ts > adjustments and the ledger invariant > every balance equals the sum of its ledger 4ms
+ ✓ tests/whatsapp.test.ts > WhatsApp webhook > answers Meta's verification only with the right token 5ms
+ ✓ tests/whatsapp.test.ts > WhatsApp webhook > rejects unsigned or tampered requests 6ms
+ ✓ tests/whatsapp.test.ts > WhatsApp webhook > turns a forwarded message from a team member into a draft — once, even if delivered twice 33ms
+ ✓ tests/whatsapp.test.ts > WhatsApp webhook > ignores numbers that aren't on the team, and non-text messages 12ms
+ ✓ tests/whatsapp.test.ts > WhatsApp webhook > approving creates exactly one order, even if approved twice 27ms
+ ✓ tests/parse.test.ts > basic reader (works without AI) > reads Hinglish quantities and matches catalog products and the buyer 7ms
+ ✓ tests/parse.test.ts > basic reader (works without AI) > never drops a line: each sentence's quantity is read, unknown items included 4ms
+ ✓ tests/parse.test.ts > basic reader (works without AI) > marks unknown products as unknown instead of guessing 2ms
+ ✓ tests/parse.test.ts > basic reader (works without AI) > reads Devanagari digits, '2k', and buyers by phone 4ms
+ ✓ tests/parse.test.ts > status colours > every order status uses a colour that exists (a missing one crashes the Settings page) 0ms
+
+ Test Files  14 passed (14)
+      Tests  93 passed (93)
+   Start at  15:18:38
+   Duration  32.16s (transform 810ms, setup 2.86s, collect 4.25s, tests 20.64s, environment 3ms, prepare 1.50s)
+

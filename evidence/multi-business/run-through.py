@@ -1,0 +1,63 @@
+import asyncio, json
+from playwright.async_api import async_playwright
+B='http://localhost:3123'; O='/home/claude/e2e2/'
+def log(*a): print(*a, flush=True)
+async def api(pg, method, url, body=None):
+    return await pg.evaluate("([m,u,b])=>fetch(u,{method:m,headers:{'Content-Type':'application/json'},body:b}).then(async r=>({s:r.status,j:await r.json().catch(()=>null)}))", [method, url, json.dumps(body) if body is not None else None])
+async def finish_setup(pg):
+    await pg.wait_for_selector('#gstin', timeout=15000)
+    await pg.fill('#gstin','27AAPFU0939F1ZV')
+    await pg.get_by_role('button', name='Next', exact=True).click(); await pg.wait_for_timeout(400)
+    await pg.get_by_role('radio', name='Shop that delivers').click()
+    await pg.get_by_role('button', name='Next', exact=True).click(); await pg.wait_for_timeout(400)
+    await pg.click('button:has-text("Start Using Munshiji")'); await pg.wait_for_timeout(2500)
+async def signup(pg, name, biz, email, pw):
+    await pg.goto(B+'/login?signup=1'); await pg.wait_for_timeout(1200)
+    await pg.get_by_label('Your name').fill(name); await pg.get_by_label('Business name').fill(biz)
+    await pg.get_by_label('Email').fill(email); await pg.get_by_label('Password').fill(pw)
+    await pg.get_by_role('button', name='Create account', exact=True).last.click()
+    await pg.wait_for_url('**/dashboard', timeout=15000); await pg.wait_for_timeout(2000)
+async def invite(pg, email, role):
+    await pg.locator('aside nav button:has-text("Settings")').click(); await pg.wait_for_timeout(1200)
+    await pg.get_by_role('button', name='Invite someone').click()
+    await pg.get_by_label('Email to invite').fill(email); await pg.get_by_label('Role', exact=True).select_option(role)
+    await pg.get_by_role('button', name='Create invite link').click(); await pg.wait_for_timeout(1500)
+    return await pg.get_by_label('Invite link').input_value()
+async def logout(pg):
+    await pg.locator('aside button[aria-label="Sign out"]').click(); await pg.wait_for_url('**/login**', timeout=15000)
+
+async def main():
+    async with async_playwright() as p:
+        b=await p.chromium.launch(); ctx=await b.new_context(viewport={'width':1440,'height':900}); pg=await ctx.new_page(); pg.set_default_timeout(12000)
+        errs=[]; pg.on('pageerror', lambda e: errs.append(str(e)))
+        await pg.goto(B+'/login?signup=1'); await pg.wait_for_timeout(1200); await pg.screenshot(path=O+'01-create-account.png')
+        await signup(pg,'Ramesh Sharma','Telix Traders','ramesh@telix.in','telix-owner-1'); await finish_setup(pg)
+        me=(await api(pg,'GET','/api/me'))['j']; log('1 Ramesh signed up:', [(x['name'],x['role']) for x in me['businesses']])
+        await api(pg,'POST','/api/customers',{'name':'Hindustan Foods Pvt Ltd','phone':'9820012345'})
+        link=await invite(pg,'vikram@telix.in','staff'); log('2 invite link created:', link.split('/invite/')[0]+'/invite/…')
+        await pg.screenshot(path=O+'02-invite-link.png')
+        await logout(pg)
+        await pg.goto(link); await pg.wait_for_timeout(1500); await pg.screenshot(path=O+'03-invite-page.png')
+        log('3 invite page says:', await pg.locator('h1').inner_text())
+        await pg.get_by_label('Your name').fill('Vikram Patil'); await pg.get_by_label('Choose a password').fill('vikram-pass-1')
+        await pg.get_by_role('button', name='Join Telix Traders').click(); await pg.wait_for_url('**/dashboard', timeout=15000); await pg.wait_for_timeout(2500)
+        me=(await api(pg,'GET','/api/me'))['j']; log('4 Vikram joined:', [(x['name'],x['role']) for x in me['businesses']], '| menu:', await pg.locator('aside nav button').all_inner_texts())
+        await pg.goto(link); await pg.wait_for_timeout(1500); log('5 reusing the link ->', await pg.locator('h1').inner_text())
+        await pg.goto(B+'/dashboard'); await pg.wait_for_timeout(1500); await logout(pg)
+        await signup(pg,'Bilal Khan','Beta Boxes','bilal@beta.in','beta-owner-1'); await finish_setup(pg)
+        await api(pg,'POST','/api/customers',{'name':'Beta Buyer Co','phone':'9900012345'})
+        log('6 Bilal sees customers:', [c['name'] for c in (await api(pg,'GET','/api/customers'))['j']['customers']])
+        link2=await invite(pg,'ramesh@telix.in','manager'); await logout(pg)
+        await pg.goto(link2); await pg.wait_for_timeout(1500)
+        log('7 invite for an existing account shows password only:', await pg.get_by_label('Your Munshiji password').count()==1)
+        await pg.get_by_label('Your Munshiji password').fill('telix-owner-1')
+        await pg.get_by_role('button', name='Join Beta Boxes').click(); await pg.wait_for_url('**/dashboard', timeout=15000); await pg.wait_for_timeout(2500)
+        me=(await api(pg,'GET','/api/me'))['j']; log('8 Ramesh now in:', [(x['name'],x['role']) for x in me['businesses']], '| current:', me['current']['name'], me['role'])
+        log('  customers visible in Beta:', [c['name'] for c in (await api(pg,'GET','/api/customers'))['j']['customers']])
+        await pg.locator('aside button[aria-haspopup="menu"]').click(); await pg.wait_for_timeout(500); await pg.screenshot(path=O+'04-business-switcher.png')
+        await pg.get_by_role('menuitem', name='Telix Traders').click(); await pg.wait_for_timeout(3500)
+        me=(await api(pg,'GET','/api/me'))['j']; log('9 switched to:', me['current']['name'], me['role'], '| customers:', [c['name'] for c in (await api(pg,'GET','/api/customers'))['j']['customers']])
+        await pg.locator('aside nav button:has-text("Settings")').click(); await pg.wait_for_timeout(1500)
+        await pg.locator('h3:has-text("Team")').scroll_into_view_if_needed(); await pg.screenshot(path=O+'05-team.png')
+        log('page errors:', errs[:3]); await b.close()
+asyncio.run(main())

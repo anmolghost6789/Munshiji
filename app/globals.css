@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════════════
+   MUNSHIJI BRAND — "Business Ka Hisab, Aasaan"
+   Fonts are self-hosted (public/fonts) so the app renders correctly
+   on slow or offline connections.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Outfit — wordmark, headings and UI text (variable 100–900) */
+@font-face {
+  font-family: "Outfit";
+  src: url("/fonts/Outfit-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Mukta — Devanagari (Hindi product names) and the ₹ sign, which Outfit lacks.
+   unicode-range means these files only download when that text is on screen. */
+@font-face { font-family: "Mukta"; src: url("/fonts/Mukta-Regular-deva.woff2") format("woff2"); font-weight: 400; font-display: swap; unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FF; }
+@font-face { font-family: "Mukta"; src: url("/fonts/Mukta-Medium-deva.woff2") format("woff2"); font-weight: 500; font-display: swap; unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FF; }
+@font-face { font-family: "Mukta"; src: url("/fonts/Mukta-SemiBold-deva.woff2") format("woff2"); font-weight: 600; font-display: swap; unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FF; }
+@font-face { font-family: "Mukta"; src: url("/fonts/Mukta-Bold-deva.woff2") format("woff2"); font-weight: 700 900; font-display: swap; unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FF; }
+
+
+@theme {
+  /* Type: Outfit everywhere; "font-mono" means Outfit with aligned (tabular) digits for ids and money. */
+  --font-sans: "Outfit", "Mukta", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Outfit", "Mukta", system-ui, sans-serif;
+  --font-mono: "Outfit", "Mukta", system-ui, sans-serif;
+
+  /* Brand */
+  --color-ink: #05362a;
+  --color-patta: #30956a;
+  --color-leaf: #65b765;
+  --color-hara: #3aa553;
+  --color-mint: #c1eed2;
+
+  /* Neutrals: soft grey page, white cards, near-black text */
+  --color-stone-50: #f7f8f7;
+  --color-stone-100: #f3f4f3;
+  --color-stone-200: #e6e8e6;
+  --color-stone-300: #d5d9d6;
+  --color-stone-400: #7f8984;
+  --color-stone-500: #6b746f;
+  --color-stone-600: #4b5550;
+  --color-stone-700: #2f3833;
+  --color-stone-800: #18201c;
+  --color-stone-900: #111713;
+  --color-stone-950: #0b0f0d;
+
+  /* Green is the accent: primary buttons (600), success, charts */
+  --color-emerald-50: #e9f6ee;
+  --color-emerald-100: #d9f0e1;
+  --color-emerald-200: #cfe9d8;
+  --color-emerald-300: #9fd8b0;
+  --color-emerald-400: #65b765;
+  --color-emerald-500: #3aa553;
+  --color-emerald-600: #1e7f47;
+  --color-emerald-700: #186a3b;
+  --color-emerald-800: #145732;
+  --color-emerald-900: #0f4426;
+
+  --shadow-card: 0 1px 2px rgba(16, 24, 20, 0.04), 0 6px 20px -10px rgba(16, 24, 20, 0.12);
+  --radius-card: 20px;
+}
+
+/* Dark mode — applies only where the app opts in (data-theme on <html>), so marketing pages stay light. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --logo-ink: #eef2ef;
+  --color-white: #161a18;
+  --color-stone-50: #1c211f; --color-stone-100: #0f1211; --color-stone-200: #262c29; --color-stone-300: #333a36;
+  --color-stone-400: #7f8984; --color-stone-500: #8d9792; --color-stone-600: #b9c2bd; --color-stone-700: #d5dcd8;
+  --color-stone-800: #eef2ef; --color-stone-900: #f5f7f6; --color-stone-950: #ffffff;
+  --color-emerald-50: #15261d; --color-emerald-100: #1a3324; --color-emerald-200: #24412f; --color-emerald-300: #2f5a3f;
+  --color-emerald-600: #4cc17a; --color-emerald-700: #65cf8c; --color-emerald-800: #8fd6a2; --color-emerald-900: #c1eed2;
+  --shadow-card: none;
+  --color-blue-50: #1c2b3c; --color-blue-100: #1e3149; --color-blue-200: #223b5f; --color-blue-600: #93c5fd; --color-blue-700: #93c5fd; --color-blue-800: #93c5fd;
+  --color-sky-50: #153039; --color-sky-100: #143946; --color-sky-200: #13465b; --color-sky-600: #7dd3fc; --color-sky-700: #7dd3fc; --color-sky-800: #7dd3fc;
+  --color-amber-50: #3a2f16; --color-amber-100: #473715; --color-amber-200: #5d4414; --color-amber-600: #fcd34d; --color-amber-700: #fcd34d; --color-amber-800: #fcd34d;
+  --color-orange-50: #3a2818; --color-orange-100: #482e18; --color-orange-200: #5f3617; --color-orange-600: #fdba74; --color-orange-700: #fdba74; --color-orange-800: #fdba74;
+  --color-violet-50: #29253c; --color-violet-100: #302949; --color-violet-200: #3b2f5f; --color-violet-600: #c4b5fd; --color-violet-700: #c4b5fd; --color-violet-800: #c4b5fd;
+  --color-pink-50: #38212d; --color-pink-100: #452434; --color-pink-200: #5a2941; --color-pink-600: #f9a8d4; --color-pink-700: #f9a8d4; --color-pink-800: #f9a8d4;
+  --color-teal-50: #16332f; --color-teal-100: #163d37; --color-teal-200: #154d45; --color-teal-600: #5eead4; --color-teal-700: #5eead4; --color-teal-800: #5eead4;
+  --color-red-50: #39211f; --color-red-100: #462322; --color-red-200: #5b2726; --color-red-600: #fca5a5; --color-red-700: #fca5a5; --color-red-800: #fca5a5;
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="auto"] {
+  color-scheme: dark;
+    --logo-ink: #eef2ef;
+    --color-white: #161a18;
+    --color-stone-50: #1c211f; --color-stone-100: #0f1211; --color-stone-200: #262c29; --color-stone-300: #333a36;
+    --color-stone-400: #7f8984; --color-stone-500: #8d9792; --color-stone-600: #b9c2bd; --color-stone-700: #d5dcd8;
+    --color-stone-800: #eef2ef; --color-stone-900: #f5f7f6; --color-stone-950: #ffffff;
+    --color-emerald-50: #15261d; --color-emerald-100: #1a3324; --color-emerald-200: #24412f; --color-emerald-300: #2f5a3f;
+    --color-emerald-600: #4cc17a; --color-emerald-700: #65cf8c; --color-emerald-800: #8fd6a2; --color-emerald-900: #c1eed2;
+    --shadow-card: none;
+    --color-blue-50: #1c2b3c; --color-blue-100: #1e3149; --color-blue-200: #223b5f; --color-blue-600: #93c5fd; --color-blue-700: #93c5fd; --color-blue-800: #93c5fd;
+    --color-sky-50: #153039; --color-sky-100: #143946; --color-sky-200: #13465b; --color-sky-600: #7dd3fc; --color-sky-700: #7dd3fc; --color-sky-800: #7dd3fc;
+    --color-amber-50: #3a2f16; --color-amber-100: #473715; --color-amber-200: #5d4414; --color-amber-600: #fcd34d; --color-amber-700: #fcd34d; --color-amber-800: #fcd34d;
+    --color-orange-50: #3a2818; --color-orange-100: #482e18; --color-orange-200: #5f3617; --color-orange-600: #fdba74; --color-orange-700: #fdba74; --color-orange-800: #fdba74;
+    --color-violet-50: #29253c; --color-violet-100: #302949; --color-violet-200: #3b2f5f; --color-violet-600: #c4b5fd; --color-violet-700: #c4b5fd; --color-violet-800: #c4b5fd;
+    --color-pink-50: #38212d; --color-pink-100: #452434; --color-pink-200: #5a2941; --color-pink-600: #f9a8d4; --color-pink-700: #f9a8d4; --color-pink-800: #f9a8d4;
+    --color-teal-50: #16332f; --color-teal-100: #163d37; --color-teal-200: #154d45; --color-teal-600: #5eead4; --color-teal-700: #5eead4; --color-teal-800: #5eead4;
+    --color-red-50: #39211f; --color-red-100: #462322; --color-red-200: #5b2726; --color-red-600: #fca5a5; --color-red-700: #fca5a5; --color-red-800: #fca5a5;
+  }
+}
+
+/* Mascot art: transparent in light mode, pale-mint outline in dark mode. */
+.mascot-dark { display: none; }
+:root[data-theme="dark"] .mascot-light { display: none; }
+:root[data-theme="dark"] .mascot-dark { display: block; }
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="auto"] .mascot-light { display: none; }
+  :root[data-theme="auto"] .mascot-dark { display: block; }
+}
+
+/* Base rules live in a layer so Tailwind utilities (e.g. focus:outline-none, bg-*) can override them. */
+@layer base {
+  *:focus-visible { outline: 2px solid var(--color-emerald-500); outline-offset: 2px; }
+  body { font-family: var(--font-sans); -webkit-font-smoothing: antialiased; background: var(--color-stone-100); color: var(--color-stone-800); font-variant-numeric: tabular-nums; }
+  h1, h2, h3 { letter-spacing: -0.02em; }
+  .font-mono { font-variant-numeric: tabular-nums; }
+  .figure-num { font-variant-numeric: lining-nums proportional-nums; letter-spacing: -0.025em; }
+}
+
+@keyframes stoneIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes stoneShimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+@keyframes munshiNod { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(-3deg) translateY(-2px); } }
+
+.stone-fade-in { animation: stoneIn 0.3s ease-out both; }
+.stone-shimmer { background: linear-gradient(90deg, var(--color-stone-200) 25%, var(--color-stone-300) 50%, var(--color-stone-200) 75%); background-size: 200% 100%; animation: stoneShimmer 1.5s ease-in-out infinite; }
+.munshi-nod { transform-origin: 50% 90%; animation: munshiNod 1.6s ease-in-out infinite; }
+
+.stone-scrollbar::-webkit-scrollbar { width: 6px; }
+.stone-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.stone-scrollbar::-webkit-scrollbar-thumb { background: var(--color-stone-300); border-radius: 3px; }
+
+@media (pointer: coarse) { button, a, input, select, textarea { min-height: 44px; } }
+@media (prefers-reduced-motion: reduce) { .munshi-nod, .stone-shimmer, .stone-fade-in { animation: none; } }
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom, 0); }
